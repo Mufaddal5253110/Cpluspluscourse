@@ -10,6 +10,7 @@ int main()
         dinner
     };
     Meal m1 = lunch;
+    cout<<breakfast;
     cout << m1;
     return 0;
 }
