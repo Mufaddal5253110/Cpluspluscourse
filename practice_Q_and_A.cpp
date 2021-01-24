@@ -65,33 +65,54 @@ using namespace std;
 //    cout << ref;
 // }
 
+
+
 /*
 Print all prime numbers b/w two numbers using function
 */
 
-# include<cmath>
-bool isPrimeNumber(int n){
-	if(n==1 || n==3){
-		return true;
-	}
-	for(int i=2;i<sqrt(n);i++){
-		if(n%i!=0){
-			return true;
-		}
-		return false;
-	}
-}
-
-int main(){
-	// int a,b;
-	// cin>>a>>b;
-	for(int i=0;i<=35;i++){
-		if(isPrimeNumber(i)){
-			cout<<i<<" ";
-		}
-	}
+// # include<cmath>
+// bool isPrimeNumber(int n){
+// 	if(n==1 || n==3){
+// 		return true;
+// 	}
+// 	for(int i=2;i<sqrt(n);i++){
+// 		if(n%i!=0){
+// 			return true;
+// 		}
+// 		return false;
+// 	}
+// }
+// int main(){
+// 	for(int i=0;i<=35;i++){
+// 		if(isPrimeNumber(i)){
+// 			cout<<i<<" ";
+// 		}
+// 	}
 	
-	return 0;
-}
+// 	return 0;
+// }
+
+
+/*
+Fibonacci sequence
+*/
+
+// void fib(int n){
+// 	int t1=0;
+// 	int t2=1;
+// 	int nextTerm;
+// 	for(int i=1;i<=n;i++){
+// 		cout<<t1<<" ";
+// 		nextTerm = t1+t2;
+// 		t1 = t2;
+// 		t2 = nextTerm;
+// 	}
+// }
+// int main(){
+// 	int n=10;
+// 	fib(n);
+// 	return 0;
+// }
 
 
