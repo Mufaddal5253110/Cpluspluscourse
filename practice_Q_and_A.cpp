@@ -65,4 +65,33 @@ using namespace std;
 //    cout << ref;
 // }
 
+/*
+Print all prime numbers b/w two numbers using function
+*/
+
+# include<cmath>
+bool isPrimeNumber(int n){
+	if(n==1 || n==3){
+		return true;
+	}
+	for(int i=2;i<sqrt(n);i++){
+		if(n%i!=0){
+			return true;
+		}
+		return false;
+	}
+}
+
+int main(){
+	// int a,b;
+	// cin>>a>>b;
+	for(int i=0;i<=35;i++){
+		if(isPrimeNumber(i)){
+			cout<<i<<" ";
+		}
+	}
+	
+	return 0;
+}
+
 
