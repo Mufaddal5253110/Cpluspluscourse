@@ -18,7 +18,6 @@ int main()
     {
         for (int j = 0; j < col; j++)
         {
-            // ary[i][j] is then rewritten as ary[i*sizeY+j];
             cin >> arr[i][j];
         }
     }
@@ -29,7 +28,6 @@ int main()
     {
         for (int j = 0; j < col; j++)
         {
-            // ary[i][j] is then rewritten as ary[i*sizeY+j];
             cout << arr[i][j] << " ";
         }
         cout << endl;
