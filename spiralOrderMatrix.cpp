@@ -18,7 +18,6 @@ int main()
     {
         for (int j = 0; j < col; j++)
         {
-            // ary[i][j] is then rewritten as ary[i*sizeY+j];
             cin >> arr[i][j];
         }
     }
@@ -29,7 +28,6 @@ int main()
     {
         for (int j = 0; j < col; j++)
         {
-            // ary[i][j] is then rewritten as ary[i*sizeY+j];
             cout << arr[i][j] << " ";
         }
         cout << endl;
@@ -46,6 +44,7 @@ int main()
             cout << arr[row_start][cl] << " ";
         }
         row_start++;
+
         //last column
         if (row_start <= row_end && col_start <= col_end)
             for (int ro = row_start; ro <= row_end; ro++)
@@ -53,6 +52,7 @@ int main()
                 cout << arr[ro][col_end] << " ";
             }
         col_end--;
+
         //last row
         if (row_start <= row_end && col_start <= col_end)
             for (int cl = col_end; cl >= col_start; cl--)
@@ -60,6 +60,7 @@ int main()
                 cout << arr[row_end][cl] << " ";
             }
         row_end--;
+        
         //first column
         if (row_start <= row_end && col_start <= col_end)
             for (int ro = row_end; ro >= row_start; ro--)
