@@ -1,13 +1,13 @@
-/*
-convert whole string to either upercase or lower case
-*/
-
 #include<iostream>
 #include<string>
 #include<algorithm>
 using namespace std;
 
 int main(){
+
+/*
+convert whole string to either upercase or lower case---------------------------------------
+*/
     
     string str="mufaDdal";
     string str1="MUfADdAL";
@@ -37,6 +37,52 @@ int main(){
     // to convert whole string in lower case letters (with inbuild func)
     transform(str1.begin(),str1.end(),str1.begin(),::tolower);
     cout<<endl<<str1;
+/*
+-------------------------------------------------------------------------------------
+*/
+
+
+/*
+form gretest number from string------------------------------------------------------
+*/
+
+    string str2="27189";
+    sort(str2.begin(),str2.end(),greater<int>());
+    cout<<endl<<str2;
+/*
+-------------------------------------------------------------------------------------
+*/
+
+
+/*
+get gretest count charachter from string------------------------------------------------------
+*/
+
+    string str3="akahjlslhsjs";
+    int arr[26];
+    for(int i=0;i<26;i++){
+        arr[i]=0;
+    }
+    for(int i=0;i<str3.length();i++){
+        arr[str3[i]-'a']++;
+    }
+    cout<<endl;
+    int freq = *max_element(arr,arr+26);
+    char charachter;
+    for(int i=0;i<26;i++){
+        if(arr[i]==freq){
+            charachter = 'a'+i;
+            break;
+        }
+    }
+    cout<<"Charachter "<<charachter<<" occurs "<<freq<<" times.";
+/*
+-------------------------------------------------------------------------------------
+*/
+
+
+
+
 
     return 0;
 }
