@@ -113,6 +113,20 @@ void stringPermutation(string str, string ans)
     }
 }
 
+/*
+Count the number of path possible in maze
+explanation: at every position whether it will move to x direction or in -y direction
+*/
+
+int countPath(int n, int i, int j)
+{
+    if (i == n - 1 && j == n - 1)
+        return 1;
+    if (i >= n || j >= n)
+        return 0;
+    return countPath(n, i + 1, j) + countPath(n, i, j + 1);
+}
+
 int main()
 {
     int arr[] = {1, 2, 3, 4, 4, 4, 4, 4, 3, 5};
@@ -130,6 +144,7 @@ int main()
     generateSubstring(str4, "");
     cout << endl;
     stringPermutation(str4, "");
+    cout << endl<< countPath(4,0,0);
 
     return 0;
 }
