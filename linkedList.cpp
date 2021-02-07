@@ -1,5 +1,8 @@
-/*****LINKED LIST*****
-Linked List Basic Operations:
+/*****SINGLY LINKED LIST*****
+ * !Like arrays, Linked List is a linear data structure.
+ * !Unlike arrays, linked list elements are not stored at a contiguous location;
+ * !the elements are linked using pointers.
+Basic Operations:
     1. Insertion at head
     2. Insertion at tail
     3. Traversal Through linked list and Display
