@@ -5,6 +5,7 @@
         "algorithm": "cpp",
         "xiosbase": "cpp",
         "xlocale": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "stack": "cpp"
     }
 }
