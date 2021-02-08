@@ -1,3 +1,6 @@
+/*
+Dynamic analyzation of ad array
+*/
 #include <iostream>
 using namespace std;
 
