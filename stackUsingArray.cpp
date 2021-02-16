@@ -81,6 +81,8 @@ int main()
     st.pop(); // No element to pop
 
     cout << st.isEmpty() << endl; // 1
+    cout << st.Top() << endl; // -1
+
 
     return 0;
 }
