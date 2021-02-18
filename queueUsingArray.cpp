@@ -79,7 +79,7 @@ int main()
     qe.dequeue();
     qe.dequeue();
 
-    cout << qe.peek() << endl;// 4
+    cout << qe.peek() << endl; // 4
 
     qe.dequeue();
     qe.dequeue();
