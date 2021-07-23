@@ -159,10 +159,12 @@ Enter number of Rows and Columns
 * * * * *
 * * * * *
 * * * * *
+
 * * * * *
 *       *
 *       * 
 * * * * *
+
 * * * *
 * * *
 * *
