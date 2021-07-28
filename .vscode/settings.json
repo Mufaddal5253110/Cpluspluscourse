@@ -7,5 +7,6 @@
         "xlocale": "cpp",
         "xstring": "cpp",
         "stack": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
