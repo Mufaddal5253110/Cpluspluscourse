@@ -18,6 +18,8 @@ Binary Tree : Elements are not linear but stored in hirechical manner
 16. Lowest Common Ancestor (LCA) - 2 methods
 17. Distance between two node :- Find LCA , then distanceBetween(LCA+n1) + distanceBetween(LCA+n2)
 18. Flatten Tree
+19. Nodes At distance K : Given root , target node , distance
+
 
 
 
@@ -530,6 +532,86 @@ void flattenTree(Node *root)
     flattenTree(root->right);
 }
 
+// Case 1
+void printSubtreeNodes(Node *root, int k)
+{
+    if (root == NULL || k < 0)
+    {
+        return;
+    }
+    if (k == 0)
+    {
+        // if(root->right){
+        //     cout<<root->right->data<<" ";
+        // }
+        // if(root->left){
+        //     cout<<root->left->data<<" ";
+        // }
+        cout << root->data << " ";
+
+        return;
+    }
+    printSubtreeNodes(root->left, k - 1);
+    printSubtreeNodes(root->right, k - 1);
+}
+// Case 2
+int printNodesAtK(Node *root, Node *target, int k)
+{
+    if (root == NULL)
+    {
+        return -1; // target not found
+    }
+    if (root == target)
+    {
+        // target found
+        printSubtreeNodes(root, k);
+    }
+    int ld = printNodesAtK(root->left, target, k);
+    if (ld != -1)
+    {
+        if (ld + 1 == k)
+        {
+            cout << root->data << " ";
+        }
+        else
+        {
+            printSubtreeNodes(root->right, k - ld - 2);
+        }
+        return 1 + ld;
+    }
+    int rd = printNodesAtK(root->right, target, k);
+    if (rd != -1)
+    {
+        if (rd + 1 == k)
+        {
+            cout << root->data << " ";
+        }
+        else
+        {
+            printSubtreeNodes(root->left, k - rd - 2);
+        }
+        return 1 + rd;
+    }
+    return -1;
+}
+
+int maxSumPath(Node *root, int ans)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = maxSumPath(root->left, ans);
+    int right = maxSumPath(root->right, ans);
+
+    int nodemax = root->data;
+
+    nodemax = max(max(nodemax, (nodemax + left + right)), max((nodemax + left), (nodemax + right)));
+
+    ans = max(ans, nodemax);
+    return max(root->data, max(root->data + left, root->data + right));
+}
+
 int main()
 {
 
@@ -620,9 +702,17 @@ int main()
     cout << "\nDistance Between 4,7 : " << distanceBetween(root, 4, 7);
 
     // Flattening Tree
-    flattenTree(root);
-    cout<<"\nAfter Flatten Inorder is :";
-    inOrderTraversal(root);
+    // flattenTree(root);
+    // cout << "\nAfter Flatten Inorder is :";
+    // inOrderTraversal(root);
+
+    // Print Nodes At K
+    cout << "\nPrinting Nodes At K : \n";
+    printNodesAtK(root, root->left, 1);
+
+    // Max Sum Path
+    cout << "\nMax Sum Path : \n"
+         << maxSumPath(root, 0);
 
     return 0;
 }
