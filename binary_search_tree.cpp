@@ -4,6 +4,10 @@
 2. InorderTraversal :- print left , than root, than right :: Inorder gives sorted order of BST
 3. Searching:- TimeComplexity : O(log(n)) , Worst Case TC :- O(height of tree)
 4. BST from PreOrder
+5. Check For Valid BST
+6. Sorted Array To BST
+7. Catalan Number :- 1,1,2,5,14 :: SumOf(Ci * Cn-i) , where i= 0 to n-1
+8. Largest BST size in binary Tree 
 */
 
 #include <iostream>
@@ -21,6 +25,25 @@ public:
         this->data = data;
         left = NULL;
         right = NULL;
+    }
+};
+
+struct SubtreeInfo
+{
+
+    int min;
+    int max;
+    int ans;
+    int size;
+    bool isBST;
+
+    SubtreeInfo(int min, int max, int ans, int size, bool isBST)
+    {
+        this->min = min;
+        this->max = max;
+        this->ans = ans;
+        this->size = size;
+        this->isBST = isBST;
     }
 };
 
@@ -168,8 +191,8 @@ bool isBSTValid(Node *root, Node *min, Node *max)
     /*
     Logic: Node > Max of left && Node < Min of right
     OR
-    Node > min allowed
-    Node < max allowed
+    Node < min allowed
+    Node > max allowed
     */
 
     if (root == NULL)
@@ -185,19 +208,101 @@ bool isBSTValid(Node *root, Node *min, Node *max)
     return isBSTValid(root->left, min, root) && isBSTValid(root->right, root, max);
 }
 
-Node* sortedArrayToBST(int array[],int start,int end){
-    if(start>end){
+Node *sortedArrayToBST(int array[], int start, int end)
+{
+    // Base  Condition
+    if (start > end)
+    {
         return NULL;
     }
+    // Step 1: In each recursion form node from Middle element
+    int mid = (start + end) / 2;
+    Node *root = new Node(array[mid]);
 
-    int mid = (start+end)/2;
-
-    Node* root = new Node(array[mid]);
-    root->left = sortedArrayToBST(array,start,(mid)-1);
-    root->right = sortedArrayToBST(array,(mid)+1,end);
+    // Recursively form nodes for left and right nodes of root
+    root->left = sortedArrayToBST(array, start, (mid)-1);
+    root->right = sortedArrayToBST(array, (mid) + 1, end);
 
     return root;
+}
 
+int sizeOfBST(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    return sizeOfBST(root->left) + sizeOfBST(root->right) + 1;
+}
+
+int largestBST(Node *root)
+{
+    /*
+    Logic :- Traverse in preorder manner and for each root checkwether it is BST or not and return max size :: O(n^2)
+    */
+
+    if (isBSTValid(root, NULL, NULL))
+    {
+        return sizeOfBST(root);
+    }
+    return max(largestBST(root->left), largestBST(root->right));
+}
+
+SubtreeInfo *simpleLargestBST(Node *root)
+{
+    // Base Condition
+    if (root == NULL)
+    {
+        return new SubtreeInfo(0, 0, 0, 0, true);
+    }
+    // For Leaf Node
+    if (root->left == NULL && root->right == NULL)
+    {
+        return new SubtreeInfo(root->data, root->data, 1, 1, true);
+    }
+
+    // Recursively going to leaf for bottom-up approach
+    SubtreeInfo *leftinfo = simpleLargestBST(root->left);
+    SubtreeInfo *rightinfo = simpleLargestBST(root->right);
+
+    // Creating Info for current node
+    SubtreeInfo *curr = NULL;
+
+    curr->size = leftinfo->size + rightinfo->size + 1;
+
+    // Checking if subtrees are bst or not
+    if (leftinfo->isBST && rightinfo->isBST && root->data > leftinfo->max && root->data < rightinfo->min)
+    {
+        // Therefore given node is BST
+        curr->ans = curr->size;
+        curr->max = max(root->data, max(leftinfo->max, rightinfo->max));
+        curr->min = min(root->data, min(leftinfo->min, rightinfo->min));
+        curr->isBST = true;
+
+    }
+    else
+    {
+        // if node is not bst
+        curr->isBST = false;
+        curr->ans = max(leftinfo->ans, rightinfo->ans);
+        curr->min = 0;
+        curr->max = 0;
+    }
+    return curr;
+}
+
+int catalan(int n)
+{
+    if (n <= 1)
+    {
+        return 1;
+    }
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        res += catalan(i) * catalan(n - i - 1);
+    }
+    return res;
 }
 
 void inorderTraversal(Node *root)
@@ -266,11 +371,20 @@ int main()
     }
 
     // Sorted Array To BST
-    int array[] = {1,2,3,4,5,6,7,8};
+    int array[] = {1, 2, 3, 4, 5, 6, 7, 8};
     int n2 = sizeof(array) / sizeof(array[0]);
-    Node* root4 = sortedArrayToBST(array,0,n2-1);
+    Node *root4 = sortedArrayToBST(array, 0, n2 - 1);
     cout << "\nSorted Array To BST :: Check By printing InOrder" << endl;
     inorderTraversal(root4);
+
+    // Print Catalan Nummber
+    cout << "\nCatalan of  is: " << catalan(4);
+
+    // Largest BST Size in binary tree
+    cout << "\nLargest BST size :: O(n^2) :- " << largestBST(root);
+
+    // Largest BST Size in binary tree
+    // cout << "\nLargest BST size :: O(n) :- " << simpleLargestBST(root)->ans;
 
     return 0;
 }
