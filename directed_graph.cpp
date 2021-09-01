@@ -226,6 +226,36 @@ bool Graph::detectcycleusingbfs()
     return false;
 }
 
+bool detectCycleUsingDFSInDirectedGraph(int v, vector<int> &visited,vector<int> &visited2){
+    visited[v] =  1;
+
+    for(auto elem:adj[v]){
+        if(elem == 0){
+            // not visited yet
+            if(detectCycleUsingDFSInDirectedGraph(elem,visited,visited2)){
+                return true;
+            }
+
+        }else if({
+
+        }
+    }
+}
+
+bool detectCycleInUnDirectedGraphUsingDFS(){
+    vector<int> visited1(v+1,0);
+    vector<int> visited2(v+1,0);
+
+    for(int i=0;i<v;i++){
+        if(visited1[i] == 0){
+            if(detectCycleUsingDFSInDirectedGraph(i,visited1,visited2)){
+                
+            }
+        }
+    }
+
+}
+
 int main()
 {
     /* Graph
