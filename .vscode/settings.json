@@ -6,6 +6,8 @@
         "xiosbase": "cpp",
         "xlocale": "cpp",
         "xstring": "cpp",
-        "stack": "cpp"
-    }
+        "stack": "cpp",
+        "iosfwd": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
